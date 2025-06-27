@@ -1,0 +1,19 @@
+.review-list {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.review-item {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-item p {
+  margin: 0.25rem 0;
+}

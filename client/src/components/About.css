@@ -1,0 +1,45 @@
+.about-page {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.about-gallery {
+  margin-top: 2rem;
+}
+
+.about-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.about-images img {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.about-adventures .adventure-images {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.about-adventures .adventure-images img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.book-with-us {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  color: #1a4d2e;
+  text-align: center;
+  font-weight: bold;
+}
