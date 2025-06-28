@@ -38,13 +38,18 @@ export default function ReviewForm({ tourId, userId, onReviewSubmit }) {
       if (response.ok) {
         setSuccess("Thank you for your review!");
         setFormData({ rating: "", comment: "" });
-        if (onReviewSubmit) onReviewSubmit(); 
+        if (onReviewSubmit) onReviewSubmit();
       } else {
-        const data = await response.json();
-        setError(data.error || "Failed to submit review.");
+        let errorMsg = "Failed to submit review.";
+        try {
+          const data = await response.json();
+          errorMsg = data.error || errorMsg;
+        } catch {
+        }
+        setError(errorMsg);
       }
     } catch (err) {
-      setError("Network error.");
+      setError("Network error. Please check your server.");
     }
   };
 

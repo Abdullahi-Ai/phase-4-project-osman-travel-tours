@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./BookingForm.css";
@@ -18,6 +18,15 @@ export default function BookingForm({ selectedTour, onClose }) {
       setTourError("");
     }
   }, [selectedTour]);
+
+  useEffect(() => {
+    if (bookingSuccess) {
+      const timer = setTimeout(() => {
+        onClose();
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [bookingSuccess, onClose]);
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
@@ -47,7 +56,7 @@ export default function BookingForm({ selectedTour, onClose }) {
     }
 
     try {
-   
+      // 1. Submit to Formspree (optional external notification)
       const formspreeRes = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         headers: {
@@ -68,7 +77,7 @@ export default function BookingForm({ selectedTour, onClose }) {
         return;
       }
 
-     
+      // 2. Submit to your Flask backend
       const bookingRes = await fetch(BACKEND_BOOKING_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -76,6 +85,7 @@ export default function BookingForm({ selectedTour, onClose }) {
           date: new Date().toISOString().split("T")[0],
           user_id: parseInt(userId),
           tour_id: Number(selectedTour.id),
+          phone_number: values.phone_number, // ✅ Important field for backend
         }),
       });
 
