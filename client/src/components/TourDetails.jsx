@@ -8,7 +8,7 @@ export default function TourDetails({ tour, onClose, onBookNow, user }) {
 
   useEffect(() => {
     if (tour?.id) {
-      fetch(`http://localhost:5000/api/tours/${tour.id}/reviews`)
+      fetch(`/api/tours/${tour.id}/reviews`)
         .then((res) => {
           if (!res.ok) {
             throw new Error("Failed to fetch reviews");
@@ -21,7 +21,7 @@ export default function TourDetails({ tour, onClose, onBookNow, user }) {
   }, [tour]);
 
   const handleReviewSubmit = () => {
-    fetch(`http://localhost:5000/api/tours/${tour.id}/reviews`)
+    fetch(`/api/tours/${tour.id}/reviews`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch updated reviews");

@@ -23,7 +23,7 @@ print("Using DB:", app.config["SQLALCHEMY_DATABASE_URI"])
 db.init_app(app)
 migrate = Migrate(app, db)
 
-CORS(app, origins=["http://localhost:5173", "http://127.0.0.1:5173"], supports_credentials=True)
+CORS(app, supports_credentials=True)
 
 @app.route('/')
 def index():
