@@ -9,7 +9,7 @@ export default function BookingForm({ selectedTour, onClose }) {
   const [loading, setLoading] = useState(false);
   const [tourError, setTourError] = useState("");
 
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mgvyrzel";
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xdkzywvo";
   const BACKEND_BOOKING_API = "http://127.0.0.1:5000/api/bookings";
 
   useEffect(() => {

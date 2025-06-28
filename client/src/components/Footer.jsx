@@ -14,7 +14,7 @@ export default function Footer() {
           Contact us on WhatsApp 0781764187
         </a>
 
-        <a href="mailto:osmannoor75200@gmail.com" aria-label="Email">
+        <a href="mailto:osmantraveltours430@gmail.com" aria-label="Email">
           <img src="/assets/mail.png" alt="Email" className="footer-icon" />
           Email us through osmantraveltours254@gmail.com
         </a>

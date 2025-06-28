@@ -19,8 +19,9 @@ export default function Contact() {
           </a>
         </li>
         <li>
-          <a href="mailto:osmantraveltours254@gmail.com">
-            Email: osmantraveltours254@gmail.com
+          <a href="mailto:osmantraveltours430@gmail.com">
+            Email: osmantraveltours430@gmail.com
+ 
           </a>
         </li>
         <li>
