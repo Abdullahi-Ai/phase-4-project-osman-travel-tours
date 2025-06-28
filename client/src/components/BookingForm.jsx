@@ -56,7 +56,7 @@ export default function BookingForm({ selectedTour, onClose }) {
     }
 
     try {
-      // 1. Submit to Formspree (optional external notification)
+      
       const formspreeRes = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         headers: {
@@ -77,7 +77,7 @@ export default function BookingForm({ selectedTour, onClose }) {
         return;
       }
 
-      // 2. Submit to your Flask backend
+      
       const bookingRes = await fetch(BACKEND_BOOKING_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -85,7 +85,7 @@ export default function BookingForm({ selectedTour, onClose }) {
           date: new Date().toISOString().split("T")[0],
           user_id: parseInt(userId),
           tour_id: Number(selectedTour.id),
-          phone_number: values.phone_number, // ✅ Important field for backend
+          phone_number: values.phone_number, 
         }),
       });
 

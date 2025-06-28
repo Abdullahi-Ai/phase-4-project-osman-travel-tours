@@ -77,6 +77,13 @@ npm run dev
 ---
 
 
+# Clone the repository
+
+
+git clone https://github.com/your-Abdullahiibrahim/osman-travel-tours.git
+
+# Navigate into the project folder
+cd osman-travel-tours
 ## License
 
 MIT
