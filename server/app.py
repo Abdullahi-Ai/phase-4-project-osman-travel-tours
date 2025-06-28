@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,render_template
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Tour, Booking, Review
@@ -8,7 +8,12 @@ from flask_migrate import Migrate
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_folder='../client/dist',
+    static_url_path='',
+    template_folder='../client/dist'
+)
 
 
 app.config.from_object(Config)
@@ -20,7 +25,9 @@ migrate = Migrate(app, db)
 
 CORS(app, origins=["http://localhost:5173", "http://127.0.0.1:5173"], supports_credentials=True)
 
-
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 # Register a new user
 @app.route("/api/users", methods=["POST"])
@@ -168,7 +175,3 @@ def get_tour_reviews(tour_id):
         print(f"Error fetching reviews for tour {tour_id}:", e)
         return jsonify({"error": "Failed to fetch reviews"}), 500
 
-if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()  
-    app.run(debug=True)
