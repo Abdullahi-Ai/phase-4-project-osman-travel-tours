@@ -21,6 +21,15 @@ export default function Navbar({ user, setUser }) {
         <li><Link to="/safari-packages">Safari Packages</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         
+
+
+        {user?.is_admin && (
+          <>
+            <li><Link to="/admin/tours">Admin Dashboard</Link></li>
+            <li><Link to="/bookings">View Bookings</Link></li>
+          </>
+        )}
+
         {user ? (
           <>
             <li>

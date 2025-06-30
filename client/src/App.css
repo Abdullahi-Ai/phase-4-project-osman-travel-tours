@@ -543,3 +543,15 @@ html, body, #root {
   background: linear-gradient(90deg,#128c7e 60%,#25d366 100%);
 }
 
+.access-denied {
+  padding: 2rem;
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  background-color: #fff3f3;
+  border: 1px solid red;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 3rem auto;
+}

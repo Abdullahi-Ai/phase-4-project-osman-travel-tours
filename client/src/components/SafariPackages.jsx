@@ -1,10 +1,23 @@
 import React, { useState } from "react";
 import TOURS from "./TOURS";
 import "./SafariPackages.css";
-import TourDetails from "./TourDetails"; 
+import TourDetails from "./TourDetails";
+import BookingForm from "./BookingForm"; 
 
 export default function SafariPackages({ user }) {
   const [selectedTour, setSelectedTour] = useState(null);
+  const [selectedTourForBooking, setSelectedTourForBooking] = useState(null); 
+
+  const handleBookNow = (tour) => {
+    if (!user) {
+      alert("Please sign in to book this tour.");
+      return;
+    }
+    setSelectedTour(null); 
+    setSelectedTourForBooking(tour); 
+  };
+
+  const closeBookingForm = () => setSelectedTourForBooking(null);
 
   return (
     <div className="safari-packages-page">
@@ -37,8 +50,15 @@ export default function SafariPackages({ user }) {
         <TourDetails
           tour={selectedTour}
           onClose={() => setSelectedTour(null)}
-          onBookNow={() => alert("Booking feature coming soon!")}
+          onBookNow={() => handleBookNow(selectedTour)} 
           user={user}
+        />
+      )}
+
+      {selectedTourForBooking && (
+        <BookingForm
+          selectedTour={selectedTourForBooking}
+          onClose={closeBookingForm}
         />
       )}
     </div>

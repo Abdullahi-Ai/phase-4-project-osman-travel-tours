@@ -23,7 +23,8 @@ function AdminHistory() {
         {history.length === 0 && <li>No actions yet.</li>}
         {history.map(h => (
           <li key={h.id}>
-            <strong>{h.action}</strong> by user {h.user_id} – {h.detail} <em>({new Date(h.timestamp).toLocaleString()})</em>
+            <strong>{h.action}</strong> by user {h.user_id} – {h.detail}{" "}
+            <em>({new Date(h.timestamp).toLocaleString()})</em>
           </li>
         ))}
       </ul>

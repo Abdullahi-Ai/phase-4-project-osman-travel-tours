@@ -25,6 +25,7 @@ class Tour(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     description = db.Column(db.String(500))
+    price = db.Column(db.Float, nullable=False)  
 
     bookings = db.relationship('Booking', backref='tour', lazy=True)
     reviews = db.relationship('Review', backref='tour', lazy=True)

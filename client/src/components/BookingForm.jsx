@@ -1,4 +1,3 @@
-// This is a bookingform.jsx
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -13,7 +12,7 @@ export default function BookingForm({ selectedTour, onClose }) {
   const BACKEND_BOOKING_API = "/api/bookings";
 
   useEffect(() => {
-    if (!selectedTour || !selectedTour.id) {
+    if (!selectedTour?.id) {
       setTourError("Tour information is missing.");
     } else {
       setTourError("");
@@ -22,9 +21,7 @@ export default function BookingForm({ selectedTour, onClose }) {
 
   useEffect(() => {
     if (bookingSuccess) {
-      const timer = setTimeout(() => {
-        onClose();
-      }, 3000);
+      const timer = setTimeout(() => onClose(), 3000);
       return () => clearTimeout(timer);
     }
   }, [bookingSuccess, onClose]);
@@ -50,14 +47,14 @@ export default function BookingForm({ selectedTour, onClose }) {
       return;
     }
 
-    if (!selectedTour || !selectedTour.id) {
+    if (!selectedTour?.id) {
       setStatus("Tour information is missing.");
       setLoading(false);
       return;
     }
 
     try {
-      
+     
       const formspreeRes = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         headers: {
@@ -78,7 +75,7 @@ export default function BookingForm({ selectedTour, onClose }) {
         return;
       }
 
-      
+ 
       const bookingRes = await fetch(BACKEND_BOOKING_API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -86,7 +83,7 @@ export default function BookingForm({ selectedTour, onClose }) {
           date: new Date().toISOString().split("T")[0],
           user_id: parseInt(userId),
           tour_id: Number(selectedTour.id),
-          phone_number: values.phone_number, 
+          phone_number: values.phone_number,
         }),
       });
 
@@ -109,7 +106,7 @@ export default function BookingForm({ selectedTour, onClose }) {
     }
   };
 
-  if (!selectedTour || !selectedTour.id) {
+  if (!selectedTour?.id) {
     return (
       <div className="tour-modal-overlay" onClick={onClose}>
         <div className="tour-modal" onClick={(e) => e.stopPropagation()}>
@@ -153,7 +150,7 @@ export default function BookingForm({ selectedTour, onClose }) {
                 <Field
                   as="textarea"
                   name="message"
-                  placeholder={`Message (e.g. I would like to book for this trip to ${selectedTour?.name || "..."})`}
+                  placeholder={`Message (e.g. I would like to book this trip to ${selectedTour?.name})`}
                   rows={4}
                 />
                 <ErrorMessage name="message" component="div" className="form-error" />

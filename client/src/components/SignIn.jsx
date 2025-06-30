@@ -21,12 +21,12 @@ export default function SignIn({ setUser }) {
     e.preventDefault();
     setError("");
 
-
     const email = form.email.trim().toLowerCase();
     const password = form.password.trim();
     const confirmPassword = form.confirmPassword.trim();
     const firstName = form.firstName.trim();
 
+    // ✅ SIGN UP logic
     if (isSignUp) {
       if (!firstName || !email || !password || !confirmPassword) {
         setError("Please fill in all fields.");
@@ -61,19 +61,20 @@ export default function SignIn({ setUser }) {
           });
         } else {
           const data = await response.json();
-          if (data.error === "Email already registered") {
-            setError("This email is already in use. Please sign in instead.");
-          } else {
-            setError(data.error || "Registration failed.");
-          }
+          setError(
+            data.error === "Email already registered"
+              ? "This email is already in use. Please sign in instead."
+              : data.error || "Registration failed."
+          );
         }
       } catch (err) {
         setError("Network error during registration.");
       }
+
       return;
     }
 
-    
+    // ✅ SIGN IN logic
     if (!email || !password) {
       setError("Please enter your email and password.");
       return;
@@ -93,6 +94,7 @@ export default function SignIn({ setUser }) {
         localStorage.setItem("user_id", user.id);
         localStorage.setItem("user_name", user.name);
         localStorage.setItem("user_email", user.email);
+        localStorage.setItem("is_admin", user.is_admin); 
 
         navigate("/");
       } else {
